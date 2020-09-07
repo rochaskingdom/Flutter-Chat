@@ -8,6 +8,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
+import 'chat_message.dart';
+
 class ChatScreen extends StatefulWidget {
   @override
   _ChatScreenState createState() => _ChatScreenState();
@@ -57,18 +59,16 @@ class _ChatScreenState extends State<ChatScreen> {
     final FirebaseUser user = await _getUser();
 
     if (user == null) {
-      _scaffoldKey.currentState.showSnackBar(
-        SnackBar(
-          content: Text('Nao foi possivel fazer o login. Tente novamente!'),
-          backgroundColor: Colors.red,
-        )
-      );
+      _scaffoldKey.currentState.showSnackBar(SnackBar(
+        content: Text('Nao foi possivel fazer o login. Tente novamente!'),
+        backgroundColor: Colors.red,
+      ));
     }
 
     Map<String, dynamic> data = {
-      "uid": user.uid,
-      "senderName": user.displayName,
-      "senderPhotoUrl": user.photoUrl
+      'uid': user.uid,
+      'senderName': user.displayName,
+      'senderPhotoUrl': user.photoUrl
     };
 
     if (file != null) {
@@ -114,9 +114,7 @@ class _ChatScreenState extends State<ChatScreen> {
                         itemCount: documents.length,
                         reverse: true,
                         itemBuilder: (context, index) {
-                          return ListTile(
-                            title: Text(documents[index].data['text']),
-                          );
+                          return ChatMessage(documents[index].data, true);
                         });
                 }
               },
