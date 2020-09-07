@@ -1,14 +1,15 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
-void main() {
+void main() async {
   runApp(MyApp());
 
-  Firestore.instance.collection("mensagens").document("x0JXcYYpVs31CfLOpW2Y").setData({
-    "texto": "Tudo bem?",
-    "from": "Teste",
-    "read": false
+  Firestore.instance.collection('mensagens').snapshots().listen((dado) {
+    dado.documents.forEach((element) {
+      print(element.data);
+    });
   });
+
 }
 
 class MyApp extends StatelessWidget {
