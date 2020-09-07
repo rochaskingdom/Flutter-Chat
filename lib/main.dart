@@ -1,15 +1,9 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+
+import 'chat_screen.dart';
 
 void main() async {
   runApp(MyApp());
-
-  Firestore.instance.collection('mensagens').snapshots().listen((dado) {
-    dado.documents.forEach((element) {
-      print(element.data);
-    });
-  });
-
 }
 
 class MyApp extends StatelessWidget {
@@ -18,9 +12,11 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: Container(),
+          primarySwatch: Colors.blue,
+          iconTheme: IconThemeData(
+            color: Colors.blue,
+          )),
+      home: ChatScreen(),
     );
   }
 }
