@@ -68,7 +68,7 @@ class _ChatScreenState extends State<ChatScreen> {
     Map<String, dynamic> data = {
       'uid': user.uid,
       'senderName': user.displayName,
-      'senderPhotoUrl': user.photoUrl
+      'senderPhotoUrl': user.photoUrl,
     };
 
     if (file != null) {
